@@ -9,13 +9,12 @@ body {
 .searchbar {
     display: flex;
     justify-content: center;
-    width: 300px;
     margin-top: 40px;      
     width: 100%;             
 }
 .searchbar input{
     width: 100%;
-    max-width: 720px;
+    max-width: 500px;
 }
 
 .navbar {
@@ -39,7 +38,8 @@ body {
 
 .title {
     text-align: center;
-    margin-top: 0px;
+    margin-top: 40px;
+    margin-bottom: 25px;
     font-size: 52px;
     font-weight: bold;
     color: #d4af37;
@@ -47,7 +47,7 @@ body {
 }
 
 .page-layout {
-    display: flex;
+    display: center;
     gap: 32px;
     align-items: flex-start;
     width: 90%;
@@ -57,12 +57,16 @@ body {
 .main-content {
     flex: 1;
     min-width: 0;
+    text-align: center;
 }
 
 .best-deals {
     width: 280px;
     padding: 16px;
     border: 2px solid white;
+    box-sizing: border-box;
+
+    margin: 40px auto 0;
 }
 
 .best-deals-title {
