@@ -3,6 +3,19 @@ body {
     background-color: #1e1308;
     color: white;
     font-family: Arial, sans-serif;
+    justify-content: center;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    margin-top: 40px;      
+    width: 100%;             
+}
+.searchbar input{
+    width: 100%;
+    max-width: 720px;
 }
 
 .navbar {
