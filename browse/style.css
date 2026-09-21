@@ -18,6 +18,7 @@
     border: 2px solid white;
     width: 70%;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .item-card {
@@ -38,4 +39,26 @@
 .item-card p {
     margin: 0;
     font-size: 20px;
+}
+
+.page-numbers-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.page-numbers-container a {
+    border-radius: 3px;
+    transition: 0.25s background-color;
+    padding: 5px;
+}
+
+.page-numbers-container a:hover {
+    background-color: gray;
+    cursor: pointer;
 }
