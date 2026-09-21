@@ -3,9 +3,13 @@
     flex-direction: row;
     justify-content: space-between;
 
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     margin-bottom: 10px;
+
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .item-list {
@@ -14,4 +18,24 @@
     border: 2px solid white;
     width: 70%;
     margin: 0 auto;
+}
+
+.item-card {
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    text-shadow: 1px 1px 0px black;
+
+    padding: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.item-card h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: yellow;
+}
+
+.item-card p {
+    margin: 0;
+    font-size: 20px;
 }
