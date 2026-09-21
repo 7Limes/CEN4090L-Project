@@ -87,10 +87,13 @@ body {
     justify-content: space-between;
     padding: 8px 0;
     border-bottom: 1px solid #4a3a28;
+    text-decoration: none;
+    color: white;
 }
 
 .deal:last-child {
     border-bottom: none;
+    cursor: pointer;
 }
 
 .deal-margin {
