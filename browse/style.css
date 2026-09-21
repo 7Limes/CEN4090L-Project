@@ -1,0 +1,16 @@
+.controls {
+    display: flex;
+    flex-direction: row;
+
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    width: 80%;
+    margin: 0 auto;
+}
