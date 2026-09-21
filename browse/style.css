@@ -33,7 +33,28 @@
 .item-list {
     display: flex;
     flex-direction: column;
+    gap: 0;
+
     border: 2px solid white;
     width: 70%;
     margin: 0 auto;
+}
+
+.item-card {
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    padding: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.item-card h3 {
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 5px;
+    color: yellow;
+    text-shadow: 1px 1px 0px black;
+}
+
+.item-card p {
+    font-size: 18px;
+    margin: 0;
 }
