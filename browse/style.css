@@ -3,9 +3,31 @@
     flex-direction: row;
     justify-content: space-between;
 
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     margin-bottom: 10px;
+
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.searchbar {
+    padding: 5px;
+    background-color: #3c3c3c;
+    border: 2px solid #676767;
+    border-radius: 3px;
+
+    color: white;
+}
+
+.sort-dropdown {
+    padding: 5px;
+    background-color: #3c3c3c;
+    border: 2px solid #676767;
+    border-radius: 3px;
+
+    color: white;
 }
 
 .item-list {
