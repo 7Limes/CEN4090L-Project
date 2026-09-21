@@ -45,3 +45,60 @@ body {
     color: #d4af37;
     font-family: "Runescape Chat Font Regular", sans-serif;
 }
+
+.page-layout {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.best-deals {
+    width: 280px;
+    padding: 16px;
+    border: 2px solid white;
+}
+
+.best-deals-title {
+    margin: 0 0 12px;
+    font-size: 28px;
+    color: #d4af37;
+    font-family: "Runescape Chat Font Regular", sans-serif;
+}
+
+.best-deals-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.deal {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #4a3a28;
+}
+
+.deal:last-child {
+    border-bottom: none;
+}
+
+.deal-margin {
+    color: #00FF00;
+}
+
+@media (max-width: 800px) {
+    .page-layout {
+        flex-direction: column;
+    }
+    .best-deals {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
