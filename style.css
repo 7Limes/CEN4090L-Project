@@ -23,9 +23,23 @@ body {
     background-color: #1e1308;
 }
 
+.navbar-links {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style: none;
+    gap: 50px;
+    font-size: 22px;
+    font-family: "Runescape Chat Font Regular", sans-serif;
+}
+
+.navbar-links a {
+    color: #d4af37;
+}
+
 .title {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 0px;
     font-size: 52px;
     font-weight: bold;
     color: #d4af37;
