@@ -32,3 +32,88 @@
     color: #d4af37;
     font-family: "Runescape Chat Font Regular", sans-serif;
 }
+
+.item-stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    text-shadow: 1px 1px 0px black;
+}
+
+.stat {
+    flex: 1;
+    min-width: 120px;
+    padding: 5px;
+    border: 2px solid white;
+    text-align: center;
+}
+
+.stat p {
+    margin: 0;
+}
+
+.stat-value {
+    font-size: 24px;
+    color: yellow;
+}
+
+.stat-value.stat-margin {
+    color: #00FF00;
+}
+
+.stat-label {
+    font-size: 18px;
+    color: gray;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    text-shadow: 1px 1px 0px black;
+}
+
+.item-panel {
+    padding: 5px;
+    border: 2px solid white;
+}
+
+.item-description {
+    flex: 2;
+}
+
+.item-sell-value {
+    flex: 1;
+}
+
+.item-panel h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: yellow;
+}
+
+.item-panel p {
+    margin: 0;
+    font-size: 20px;
+}
+
+@media (max-width: 800px) {
+    .item-details {
+        flex-direction: column;
+    }
+}
