@@ -112,6 +112,41 @@
     font-size: 20px;
 }
 
+.report-button-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    margin: 30px;
+    font-family: "Runescape Chat Font Regular", sans-serif;
+}
+
+.report-button {
+    background-color: #d4af37;
+    font-size: 22px;
+    padding: 8px;
+    color: #1e1308;
+    text-decoration: none;
+    transition: 0.25s background-color;
+
+    clip-path: polygon(
+    /* top-left */
+    0px 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, 12px 0,
+    /* top-right */
+    calc(100% - 12px) 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+    /* bottom-right */
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, calc(100% - 12px) 100%,
+    /* bottom-left */
+    12px 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+    );
+
+}
+
+.report-button:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
 @media (max-width: 800px) {
     .item-details {
         flex-direction: column;
