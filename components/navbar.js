@@ -31,7 +31,7 @@
      */
     var NAV_LINKS = [
         { label: "Home", href: "index.html" },
-        { label: "Browse", href: "#" },
+        { label: "Browse", href: "browse/index.html" },
         { label: "Saved Strategies", href: "#" }
     ];
 
