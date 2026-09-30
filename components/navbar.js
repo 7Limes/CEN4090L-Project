@@ -30,10 +30,9 @@
      * @type {Array<{label: string, href: string}>}
      */
     var NAV_LINKS = [
-        { label: "Home",            href: "#" },
-        { label: "Strategy Tester", href: "#" },
-        { label: "Watchlist",       href: "#" },
-        { label: "My Strategies",   href: "#" }
+        { label: "Home", href: "#" },
+        { label: "Browse", href: "#" },
+        { label: "Saved Strategies", href: "#" }
     ];
 
     /**
