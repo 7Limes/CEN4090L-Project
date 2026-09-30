@@ -30,7 +30,7 @@
      * @type {Array<{label: string, href: string}>}
      */
     var NAV_LINKS = [
-        { label: "Home", href: "#" },
+        { label: "Home", href: "index.html" },
         { label: "Browse", href: "#" },
         { label: "Saved Strategies", href: "#" }
     ];
