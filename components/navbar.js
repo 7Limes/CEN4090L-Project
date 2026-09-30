@@ -32,7 +32,7 @@
     var NAV_LINKS = [
         { label: "Home", href: "index.html" },
         { label: "Browse", href: "browse/index.html" },
-        { label: "Saved Strategies", href: "#" }
+        { label: "Saved Reports", href: "saved_reports/index.html" }
     ];
 
     /**
