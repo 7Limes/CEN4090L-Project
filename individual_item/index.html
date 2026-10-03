@@ -59,8 +59,28 @@
         </div>
     </div>
 
+    <!-- Report settings: placeholder inputs for now, wired to the report in Sprint 2 -->
+    <details class="report-settings">
+        <summary>Report Settings</summary>
+        <div class="report-settings-fields">
+            <div class="report-field">
+                <label for="report-budget">Budget (gp)</label>
+                <input id="report-budget" name="budget" type="number" min="0" step="1" placeholder="e.g. 10000000">
+            </div>
+            <div class="report-field">
+                <label for="report-window">Time Window</label>
+                <select id="report-window" name="window">
+                    <option value="7d">Last 7 days</option>
+                    <option value="1m" selected>Last month</option>
+                    <option value="6m">Last 6 months</option>
+                    <option value="1y">Last year</option>
+                </select>
+            </div>
+        </div>
+    </details>
+
     <div class="report-button-container">
-        <a class="report-button" href="../item_report/index.html">View Historic Report</a>
+        <a class="report-button" href="../item_report/index.html">Generate Report</a>
     </div>
 
     <!-- Compiler for osrs font -->
