@@ -71,6 +71,16 @@
     }
 
     /**
+     * Path of a URL with a trailing "index.html" removed, so "/" and
+     * "/index.html" count as the same page.
+     * @param {string} url
+     * @returns {string}
+     */
+    function pagePath(url) {
+        return new URL(url).pathname.replace(/index\.html$/, "");
+    }
+
+    /**
      * Build the navbar's contents. Produces exactly:
      *   <ul class="navbar-links"><li><a href="...">Label</a></li>...</ul>
      * which is what the site-wide .navbar / .navbar-links styles expect.
@@ -84,6 +94,10 @@
             var anchor = document.createElement("a");
             anchor.href = resolveHref(link.href);
             anchor.textContent = link.label;
+
+            if (link.href !== "#" && pagePath(anchor.href) === pagePath(window.location.href)) {
+                anchor.classList.add("active");
+            }
 
             var item = document.createElement("li");
             item.appendChild(anchor);
