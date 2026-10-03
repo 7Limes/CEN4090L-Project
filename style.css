@@ -17,6 +17,14 @@ body {
     max-width: 500px;
 }
 
+.browse-all-link{
+    display: inline-block;
+    margin-top: 14px;
+    color: #d4af37;
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    font-size: 18px;
+}
+
 .navbar {
     height: 60px;
     background-color: #1e1308;
