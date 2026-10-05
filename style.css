@@ -2,7 +2,7 @@ body {
     margin: 0;
     background-color: #1e1308;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: "Runescape Chat Font Regular", sans-serif;
     justify-content: center;
 }
 
@@ -10,11 +10,25 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 40px;      
-    width: 100%;             
+    width: 100%;
 }
-.searchbar input{
+
+.searchbar input {
+    box-sizing: border-box;
     width: 100%;
     max-width: 500px;
+    padding: 6px;
+    border: 2px solid white;
+
+    background-color: #1e1308;
+    color: yellow;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.searchbar input:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
 }
 
 .browse-all-link{
