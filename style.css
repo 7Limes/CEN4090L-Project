@@ -104,6 +104,12 @@ body {
     font-family: "Runescape Chat Font Regular", sans-serif;
 }
 
+.best-deals-labels{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
 .best-deals-list {
     list-style: none;
     margin: 0;
@@ -118,9 +124,8 @@ body {
 }
 
 .traded-item a {
-    color: white;
+    color: #c8b89a;
     transition: 0.25s background-color;
-    text-decoration: none;
 }
 
 .traded-item a:hover{
