@@ -115,8 +115,17 @@ body {
     justify-content: space-between;
     padding: 8px 0;
     border-bottom: 1px solid #4a3a28;
-    text-decoration: none;
+}
+
+.traded-item a {
     color: white;
+    transition: 0.25s background-color;
+    text-decoration: none;
+}
+
+.traded-item a:hover{
+    background-color: gray;
+    cursor: pointer;
 }
 
 .traded-item:last-child {
