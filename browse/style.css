@@ -26,9 +26,35 @@
 }
 
 .controls input:focus-visible,
-.controls select:focus-visible {
+.controls select:focus-visible,
+.controls button:focus-visible {
     outline: 2px solid #d4af37;
     outline-offset: 2px;
+}
+
+/* sort dropdown with the ascending/descending toggle to its right */
+.sort-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.sort-direction {
+    flex-shrink: 0;
+    padding: 6px 10px;
+    border: 2px solid white;
+
+    background-color: #1e1308;
+    color: #d4af37;
+    font-family: inherit;
+    font-size: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.25s background-color;
+}
+
+.sort-direction:hover {
+    background-color: #4a3a28;
 }
 
 .item-list {
@@ -85,6 +111,13 @@
 .item-card p {
     margin: 0;
     font-size: 20px;
+}
+
+.item-card .item-card-stats {
+    margin-top: 4px;
+    font-size: 16px;
+    color: #d4af37;
+    white-space: pre-wrap;
 }
 
 .page-numbers-container {
