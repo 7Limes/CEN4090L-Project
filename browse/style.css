@@ -47,12 +47,22 @@
     padding: 5px;
     border-bottom: 1px solid gray;
 
-    /* The card is a link (issue #49): fill the row and keep the card look
-       instead of the browser's default blue, underlined link text. */
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     color: inherit;
     text-decoration: none;
     transition: 0.25s background-color;
+}
+
+
+.item-card-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 32px;
+    object-fit: contain;
 }
 
 .item-card:hover,
