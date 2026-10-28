@@ -21,7 +21,7 @@
 
     <div class="controls">
         <div>
-            <label>Search:</label>
+            <label for="item-search">Search:</label>
             <input type="text"
                     placeholder="Search for an item"
                     id = "item-search"
@@ -31,12 +31,16 @@
         </div>
         
         <div>
-            <label>Sort:</label>
-            <select>
-                <option>Price</option>
-                <option>Daily Volume</option>
-                <option>High Alch. Price</option>
-            </select>
+            <label for="sort-select">Sort:</label>
+            <div class="sort-row">
+                <select id="sort-select">
+                    <option value="price">Price</option>
+                    <option value="volume">Daily Volume</option>
+                    <option value="highalch">High Alch. Price</option>
+                </select>
+                <!-- Flips between descending and ascending; text and aria-label are set in index.js -->
+                <button type="button" id="sort-direction" class="sort-direction">High to Low</button>
+            </div>
         </div>
     </div>
 
