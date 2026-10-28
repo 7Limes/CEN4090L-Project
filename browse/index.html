@@ -22,9 +22,12 @@
     <div class="controls">
         <div>
             <label>Search:</label>
-            <input type="text" 
+            <input type="text"
                     placeholder="Search for an item"
-                    id = "item-search">
+                    id = "item-search"
+                    list = "item-datalist"
+                    autocomplete="off">
+            <datalist id="item-datalist"></datalist>
         </div>
         
         <div>
@@ -37,19 +40,11 @@
         </div>
     </div>
 
-    <div class="item-list">
-        <a class="item-card" href="../individual_item/index.html">
-            <h3>Item 1</h3>
-            <p>Item 1 description</p>
-        </a>
-        <a class="item-card" href="../individual_item/index.html">
-            <h3>Item 2</h3>
-            <p>Item 2 description</p>
-        </a>
-        <a class="item-card" href="../individual_item/index.html">
-            <h3>Item 3</h3>
-            <p>Item 3 description</p>
-        </a>
+   
+    <div class="item-list" id="item-list">
+        <div class="item-card">
+            <p>Loading items...</p>
+        </div>
     </div>
 
     <div class="page-numbers-container">
