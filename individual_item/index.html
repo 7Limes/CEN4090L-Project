@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <!-- Report settings: placeholder inputs for now, wired to the report in Sprint 2 -->
+    <!-- Report settings: front end only for now, not wired to the report/backtester yet -->
     <details class="report-settings">
         <summary>Report Settings</summary>
         <div class="report-settings-fields">
@@ -78,13 +78,73 @@
                 </select>
             </div>
         </div>
+
+        <!-- Buy and sell rules (issue #72). Rows are built from #condition-template by report_settings.js -->
+        <fieldset class="condition-group" data-group="buy">
+            <legend>Buy Conditions</legend>
+            <ol class="condition-list"></ol>
+            <div class="condition-combine">
+                <span>Combine another condition? (optional)</span>
+                <button type="button" class="condition-button condition-add" data-join="and" aria-label="Add a buy condition joined with AND">+ AND</button>
+                <button type="button" class="condition-button condition-add" data-join="or" aria-label="Add a buy condition joined with OR">+ OR</button>
+            </div>
+        </fieldset>
+
+        <fieldset class="condition-group" data-group="sell">
+            <legend>Sell Conditions</legend>
+            <ol class="condition-list"></ol>
+            <div class="condition-combine">
+                <span>Combine another condition? (optional)</span>
+                <button type="button" class="condition-button condition-add" data-join="and" aria-label="Add a sell condition joined with AND">+ AND</button>
+                <button type="button" class="condition-button condition-add" data-join="or" aria-label="Add a sell condition joined with OR">+ OR</button>
+            </div>
+        </fieldset>
     </details>
+
+    <!-- One condition row, shared by the buy and sell groups. report_settings.js fills in ids and names -->
+    <template id="condition-template">
+        <li class="condition">
+            <fieldset class="condition-join">
+                <legend class="visually-hidden">Combine with the condition above using</legend>
+                <label><input type="radio" value="and"> AND</label>
+                <label><input type="radio" value="or"> OR</label>
+            </fieldset>
+            <div class="condition-fields">
+                <div class="report-field">
+                    <label data-for="metric">Metric</label>
+                    <select data-field="metric">
+                        <option value="" selected disabled>Choose a metric</option>
+                        <option value="price">Current price (gp)</option>
+                        <option value="price_change">Price change (%)</option>
+                        <option value="volume">Trade volume</option>
+                        <option value="margin">GE margin (gp)</option>
+                    </select>
+                </div>
+                <div class="report-field">
+                    <label data-for="operator">Operator</label>
+                    <select data-field="operator">
+                        <option value="" selected disabled>Choose an operator</option>
+                        <option value="gt">more than (&gt;)</option>
+                        <option value="lt">less than (&lt;)</option>
+                        <option value="gte">at least (&ge;)</option>
+                        <option value="lte">at most (&le;)</option>
+                    </select>
+                </div>
+                <div class="report-field">
+                    <label data-for="threshold">Threshold</label>
+                    <input data-field="threshold" type="number" step="any" placeholder="e.g. 25">
+                </div>
+                <button type="button" class="condition-button condition-remove">Remove</button>
+            </div>
+        </li>
+    </template>
 
     <div class="report-button-container">
         <a class="report-button" id="report-button" href="../item_report/index.html">Generate Report</a>
     </div>
 
     <script src="./index.js"></script>
+    <script src="./report_settings.js"></script>
 
     <!-- Compiler for osrs font -->
     <script src="../fonts/os-font.js"></script>
