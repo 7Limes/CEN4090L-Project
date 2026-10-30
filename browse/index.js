@@ -1,5 +1,4 @@
 const searchInput = document.getElementById("item-search");
-const dataList = document.getElementById("item-datalist");
 const itemList = document.getElementById("item-list");
 const sortSelect = document.getElementById("sort-select");
 const sortDirectionButton = document.getElementById("sort-direction");
@@ -84,39 +83,6 @@ function byName(a, b)
     return a.name.localeCompare(b.name);
 }
 
-
-
-function updateSuggestions()
-{
-    dataList.replaceChildren();
-    const text = searchInput.value.trim().toLowerCase();
-
-    
-    if (text.length < 1)
-    {
-        return;
-    }
-
-    const matches = items.filter(function(item)
-    {
-        return item.name.toLowerCase().startsWith(text);
-    }).sort(byName);
-
-    const otherMatches = items.filter(function(item)
-    {
-        const name = item.name.toLowerCase();
-        return !name.startsWith(text) && name.includes(text);
-    }).sort(byName);
-
-    matches.concat(otherMatches).slice(0, MAX_SUGGESTIONS).forEach(function(item)
-    {
-        const option = document.createElement("option");
-        option.value = item.name;
-        dataList.appendChild(option);
-    });
-}
-
-
 // formats a number with commas, or a dash if it's missing
 function formatNumber(value)
 {
@@ -170,6 +136,27 @@ function compareItems(a, b, field, descending)
     return descending ? bValue - aValue : aValue - bValue;
 }
 
+// filters the items by the search, so if a is typed it only shows items with a
+function filterItems()
+{
+    const searchText = searchInput.value.trim().toLowerCase();
+
+    const filteredItems = items.filter(function(item)
+    {
+        return item.name.toLowerCase().startsWith(searchText);
+    });
+
+    const field = sortSelect.value;
+
+    sortedItems = filteredItems.sort(function(a, b)
+    {
+        return compareItems(a, b, field, sortDescending);
+    });
+
+    renderItems();
+}
+
+
 // Re-sorts every item using the current dropdown and direction, then redraws the list
 function applySort()
 {
@@ -179,11 +166,16 @@ function applySort()
         return;
     }
 
-    const field = sortSelect.value;
+    const searchText = searchInput.value.trim().toLowerCase();
 
-    sortedItems = items.slice().sort(function(a, b)
+    sortedItems = items.filter(function(item)
     {
-        return compareItems(a, b, field, sortDescending);
+        return item.name.toLowerCase().startsWith(searchText);
+    });
+
+    sortedItems.sort(function(a, b)
+    {
+        return compareItems(a, b, sortSelect.value, sortDescending);
     });
 
     renderItems();
@@ -305,6 +297,7 @@ async function loadItems()
 updateSortDirectionButton();
 loadItems();
 
+searchInput.addEventListener("input", filterItems);
 
 sortSelect.addEventListener("change", applySort);
 
@@ -314,8 +307,6 @@ sortDirectionButton.addEventListener("click", function()
     updateSortDirectionButton();
     applySort();
 });
-
-searchInput.addEventListener("input", updateSuggestions);
 
 searchInput.addEventListener("keydown", function(event)
 {
