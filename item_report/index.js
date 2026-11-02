@@ -67,4 +67,8 @@ function generateReport(item) {
     `;
 }
 
-loadItem();
+//only generate a new report when not viewing a saved one (?report= is handled in save_report.js)
+if (!new URLSearchParams(window.location.search).has("report"))
+{
+    loadItem();
+}
