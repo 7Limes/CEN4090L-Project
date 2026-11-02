@@ -124,20 +124,49 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
+    margin-bottom: 20px;
 
     font-family: "Runescape Chat Font Regular", sans-serif;
     font-weight: bold;
     font-size: 18px;
 }
 
-.page-numbers-container a {
+.page-button {
+    border: none;
     border-radius: 3px;
     transition: 0.25s background-color;
     padding: 5px;
+
+    background: none;
+    color: white;
+    font: inherit;
+    text-shadow: 1px 1px 0px black;
 }
 
-.page-numbers-container a:hover {
+.page-button:hover:not(:disabled) {
     background-color: gray;
     cursor: pointer;
+}
+
+.page-button:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+}
+
+
+.page-button.current-page {
+    color: yellow;
+    background-color: #4a3a28;
+}
+
+
+.page-button:disabled {
+    color: gray;
+}
+
+.page-gap {
+    padding: 5px;
 }

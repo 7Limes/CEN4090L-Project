@@ -2,6 +2,7 @@ const searchInput = document.getElementById("item-search");
 const itemList = document.getElementById("item-list");
 const sortSelect = document.getElementById("sort-select");
 const sortDirectionButton = document.getElementById("sort-direction");
+const pageNumbers = document.getElementById("page-numbers");
 
 
 searchInput.value = "";
@@ -9,12 +10,17 @@ searchInput.value = "";
 const API_BASE = "https://prices.runescape.wiki/api/v1/osrs";
 const ITEMS_PER_PAGE = 10;
 const MAX_SUGGESTIONS = 10;
+// how many page numbers show on each side of the current page
+const PAGE_WINDOW = 2;
 const ICON_BASE = "https://oldschool.runescape.wiki/images/";
 
 let items = [];
 
-// Items in the current sort order. Pagination (#69) should slice this list.
+// Items in the current sort order. pages slice this list!!
 let sortedItems = [];
+
+// the page being shown, starting at 1
+let currentPage = 1;
 
 // true = highest first, false = lowest first
 let sortDescending = true;
@@ -153,6 +159,7 @@ function filterItems()
         return compareItems(a, b, field, sortDescending);
     });
 
+    currentPage = 1;
     renderItems();
 }
 
@@ -178,13 +185,17 @@ function applySort()
         return compareItems(a, b, sortSelect.value, sortDescending);
     });
 
+    currentPage = 1;
     renderItems();
 }
 
-// Shows the first page of the sorted list
+// Shows the current page of the sorted list
 function renderItems()
 {
-    const cards = sortedItems.slice(0, ITEMS_PER_PAGE).map(createItemCard);
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const cards = sortedItems.slice(start, start + ITEMS_PER_PAGE).map(createItemCard);
+
+    renderPageNumbers();
 
     if (cards.length === 0)
     {
@@ -195,7 +206,110 @@ function renderItems()
     itemList.replaceChildren(...cards);
 }
 
-// Keeps the direction button's text in sync with sortDescending
+function getPageCount()
+{
+    return Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+}
+
+function goToPage(page)
+{
+    const pageCount = getPageCount();
+
+    if (page < 1 || page > pageCount || page === currentPage)
+    {
+        return;
+    }
+
+    currentPage = page;
+    renderItems();
+}
+
+
+function createPageButton(label, page, ariaLabel)
+{
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "page-button";
+    button.textContent = label;
+
+    if (ariaLabel)
+    {
+        button.setAttribute("aria-label", ariaLabel);
+    }
+
+    if (page === currentPage && label === String(page))
+    {
+        button.classList.add("current-page");
+        button.setAttribute("aria-current", "page");
+    }
+
+    if (page < 1 || page > getPageCount())
+    {
+        button.disabled = true;
+    }
+
+    button.addEventListener("click", function()
+    {
+        goToPage(page);
+    });
+
+    return button;
+}
+
+
+function createPageGap()
+{
+    const gap = document.createElement("span");
+    gap.className = "page-gap";
+    gap.textContent = "...";
+    return gap;
+}
+
+function renderPageNumbers()
+{
+    const pageCount = getPageCount();
+
+   
+    if (pageCount <= 1)
+    {
+        pageNumbers.replaceChildren();
+        return;
+    }
+
+    const buttons = [createPageButton("<", currentPage - 1, "Previous page")];
+
+    const first = Math.max(1, currentPage - PAGE_WINDOW);
+    const last = Math.min(pageCount, currentPage + PAGE_WINDOW);
+
+    if (first > 1)
+    {
+        buttons.push(createPageButton("1", 1));
+        if (first > 2)
+        {
+            buttons.push(createPageGap());
+        }
+    }
+
+    for (let page = first; page <= last; page++)
+    {
+        buttons.push(createPageButton(String(page), page));
+    }
+
+    if (last < pageCount)
+    {
+        if (last < pageCount - 1)
+        {
+            buttons.push(createPageGap());
+        }
+        buttons.push(createPageButton(String(pageCount), pageCount));
+    }
+
+    buttons.push(createPageButton(">", currentPage + 1, "Next page"));
+
+    pageNumbers.replaceChildren(...buttons);
+}
+
+// Keeps  direction button text synced w/ sortDescending
 function updateSortDirectionButton()
 {
     sortDirectionButton.textContent = sortDescending ? "High to Low" : "Low to High";
