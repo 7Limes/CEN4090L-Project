@@ -88,13 +88,22 @@ body {
     text-align: center;
 }
 
+.home-panels {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    margin-top: 40px;
+}
+
 .best-deals {
+    display: flex;
+    flex-direction: column;
     width: 280px;
     padding: 16px;
     border: 2px solid white;
     box-sizing: border-box;
-
-    margin: 40px auto 0;
 }
 
 .best-deals-title {
@@ -110,7 +119,11 @@ body {
     margin-bottom: 2px;
 }
 
+/* rows share the box height evenly, so both panels' rows line up */
 .best-deals-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -118,9 +131,18 @@ body {
 
 .traded-item {
     display: flex;
+    flex: 1;
     justify-content: space-between;
+    align-items: center;
     padding: 8px 0;
     border-bottom: 1px solid #4a3a28;
+}
+
+.traded-item.mini-report {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
 }
 
 .traded-item a {
@@ -179,6 +201,9 @@ body {
 
 @media (max-width: 800px) {
     .page-layout {
+        flex-direction: column;
+    }
+    .home-panels {
         flex-direction: column;
     }
     .best-deals {

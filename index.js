@@ -2,6 +2,7 @@
 const searchInput = document.getElementById("item-search");
 const dataList = document.getElementById("item-datalist");
 const bestDealsList = document.getElementById("best-deals-list");
+const miniReportsList = document.getElementById("mini-reports-list");
 
 let items = [];
 
@@ -81,12 +82,39 @@ async function loadBestDeals() {
             li.appendChild(profit);
             bestDealsList.appendChild(li);
         }
+
+        renderMiniReports(topDeals);
     }
     catch(error) {
         //shows an error message if the API fails to fetch
         bestDealsList.innerHTML = '<li class="traded-item">Unable to load deals</li>';
+        miniReportsList.innerHTML = '<li class="traded-item">Unable to load reports</li>';
     }
 
+}
+
+function renderMiniReports(deals) {
+    miniReportsList.innerHTML = "";
+    for (const deal of deals) {
+        const li = document.createElement("li");
+        li.className = "traded-item mini-report";
+
+        const link = document.createElement("a");
+        link.href = "item_report/index.html?id=" + deal.id;
+
+        const name = document.createElement("span");
+        name.className = "traded-item-name";
+        name.textContent = deal.name;
+
+        const summary = document.createElement("span");
+        summary.className = "traded-item-volume";
+        summary.textContent = "Mini report placeholder";
+
+        link.appendChild(name);
+        li.appendChild(link);
+        li.appendChild(summary);
+        miniReportsList.appendChild(li);
+    }
 }
 
 searchInput.addEventListener("input", function() {
