@@ -149,7 +149,7 @@ searchInput.addEventListener("keydown", function(event) {
         );
 
         if (item) {
-            window.location.href = "individual_item/?id=" + item.id;
+            window.location.href = "individual_item/index.html?id=" + item.id;
         }
     }
 });
