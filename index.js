@@ -1,3 +1,4 @@
+import { geTax } from "./components/geTax.js";
 
 const searchInput = document.getElementById("item-search");
 const dataList = document.getElementById("item-datalist");
@@ -36,7 +37,7 @@ async function loadBestDeals() {
             if (!hoursTrading.avgHighPrice || !hoursTrading.avgLowPrice) continue;
 
             //calculate variables like tax (2%), margin (using last hour price), quantity, and potential profit
-            const tax = Math.floor(hoursTrading.avgHighPrice * 0.02);
+            const tax = geTax(hoursTrading.avgHighPrice);
             const margin = hoursTrading.avgHighPrice - hoursTrading.avgLowPrice - tax;
             // trades at most buy limit or 5% of daily volume or what 10m gp can buy, whichever is smaller
             const quantity = Math.floor(Math.min(item.limit, daysTrading.lowPriceVolume * 0.05, daysTrading.highPriceVolume * 0.05, 10000000 / hoursTrading.avgLowPrice));
