@@ -1,3 +1,5 @@
+import { geTax } from "../components/geTax.js";
+
 const API_BASE = "https://prices.runescape.wiki/api";
 const ICON_BASE = "https://oldschool.runescape.wiki/images/";
 
@@ -73,7 +75,7 @@ async function loadItem() {
 
         // margin after the 2% GE tax on the sell side, capped at 5m
         if (latest.high && latest.low) {
-            const tax = Math.min(Math.floor(latest.high * 0.02), 5000000);
+            const tax = geTax(latest.high);
             const margin = latest.high - latest.low - tax;
             marginValue.textContent = (margin >= 0 ? "+" : "") + formatGp(margin);
             marginValue.classList.toggle("negative", margin < 0);
