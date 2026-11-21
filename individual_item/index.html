@@ -60,6 +60,12 @@
         </div>
     </div>
 
+    <div class="price-chart-element">
+        <canvas id="price-chart">
+
+        </canvas>
+    </div>
+
     <!-- Report settings: front end only for now, not wired to the report/backtester yet -->
     <details class="report-settings">
         <summary>Report Settings</summary>
@@ -143,6 +149,8 @@
         <a class="report-button" id="report-button" href="../item_report/index.html">Generate Report</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="./price_chart.js"></script>
     <script type="module" src="./index.js"></script>
     <script src="./report_settings.js"></script>
 
