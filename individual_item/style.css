@@ -112,6 +112,21 @@
     font-size: 20px;
 }
 
+.price-chart-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px auto;
+    height: 400px;
+    width: 70%;
+
+    font-family: "Runescape Chat Font Regular", sans-serif;
+    border: 2px solid white;
+    box-sizing: border-box;
+    position: relative;
+}
+
 .report-settings {
     width: 70%;
     box-sizing: border-box;

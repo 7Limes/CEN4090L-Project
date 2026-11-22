@@ -60,10 +60,10 @@
         </div>
     </div>
 
+    <!-- Price chart: displays last 24 hours of hourly buy prices using price_chart.js -->
     <div class="price-chart-element">
-        <canvas id="price-chart">
-
-        </canvas>
+        <canvas id="price-chart"></canvas>
+        <p id="chart-message" hidden>No trades in the last 24 hours</p>
     </div>
 
     <!-- Report settings: front end only for now, not wired to the report/backtester yet -->
@@ -149,7 +149,7 @@
         <a class="report-button" id="report-button" href="../item_report/index.html">Generate Report</a>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js"></script>
     <script src="./price_chart.js"></script>
     <script type="module" src="./index.js"></script>
     <script src="./report_settings.js"></script>
