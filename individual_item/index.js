@@ -100,4 +100,64 @@ async function loadItem() {
     }
 }
 
+reportButton.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // reads the budget and time window from the report settings
+    const budget = document.getElementById("report-budget").value;
+    const timeWindow = document.getElementById("report-window").value;
+
+    // creates a dictionary of the report data to send to the report page
+    const reportData = {
+        itemId: new URLSearchParams(window.location.search).get("id"),
+        settings: {
+            budget: Number(budget),
+            timeWindow: timeWindow,
+            buyConditions: [],
+            sellConditions: []
+        }
+    };
+
+    let fieldsFilled = true;  // flag to check if all fields are filled
+
+    document.querySelectorAll(".condition-group").forEach(group => {
+        const groupName = group.dataset.group;
+
+        group.querySelectorAll(".condition").forEach((row, index) => {
+            const metric = row.querySelector('[data-field="metric"]').value;
+            const operator = row.querySelector('[data-field="operator"]').value;
+            const threshold = row.querySelector('[data-field="threshold"]').value;
+            const join = row.querySelector(".condition-join input:checked");
+
+            // Prevent incomplete conditions
+            if (!metric || !operator || threshold === "" || (index > 0 && !join)) {
+                fieldsFilled = false;
+            }
+
+            // appends the condition to the list for the group in the report data
+            reportData.settings[groupName + "Conditions"].push({
+                metric: metric,
+                operator: operator,
+                threshold: Number(threshold),
+                join: index === 0 ? null : join.value
+            });
+        });
+    });
+
+    // error checks and alerts
+    if (!fieldsFilled) {
+        alert("Please fill in all fields for each condition.");
+        return;
+    }
+    else if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0) {
+        alert("Enter a valid budget.");
+        return;
+    }
+
+    // sends the report data to the report page
+    sessionStorage.setItem("sentReport", JSON.stringify(reportData));
+
+    window.location.href = reportButton.href;
+});
+
 loadItem();
