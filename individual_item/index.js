@@ -103,61 +103,61 @@ async function loadItem() {
 reportButton.addEventListener("click", function(event) {
     event.preventDefault();
 
+    //Removes the old session storage
+    sessionStorage.removeItem("sentReport");
+
     // reads the budget and time window from the report settings
-    const budget = document.getElementById("report-budget").value;
+    const budget = document.getElementById("report-budget").valueAsNumber;
     const timeWindow = document.getElementById("report-window").value;
 
-    // creates a dictionary of the report data to send to the report page
-    const reportData = {
-        itemId: new URLSearchParams(window.location.search).get("id"),
-        settings: {
-            budget: Number(budget),
-            timeWindow: timeWindow,
-            buyConditions: [],
-            sellConditions: []
-        }
+    // creates a settings object matching the backtest contract
+    const settings = {
+        itemId: Number(new URLSearchParams(window.location.search).get("id")),
+        budget: budget,
+        window: timeWindow,
+        buy: [],
+        sell: []
     };
 
-    let fieldsFilled = true;  // flag to check if all fields are filled
-
+    // collects the buy and sell conditions
     document.querySelectorAll(".condition-group").forEach(group => {
         const groupName = group.dataset.group;
 
         group.querySelectorAll(".condition").forEach((row, index) => {
-            const metric = row.querySelector('[data-field="metric"]').value;
-            const operator = row.querySelector('[data-field="operator"]').value;
-            const threshold = row.querySelector('[data-field="threshold"]').value;
-            const join = row.querySelector(".condition-join input:checked");
+            const condition = {
+                metric: row.querySelector('[data-field="metric"]').value,
+                operator: row.querySelector('[data-field="operator"]').value,
+                threshold: row.querySelector('[data-field="threshold"]').valueAsNumber
+            };
 
-            // Prevent incomplete conditions
-            if (!metric || !operator || threshold === "" || (index > 0 && !join)) {
-                fieldsFilled = false;
+            // first condition doesnt have a join
+            if (index > 0) {
+                condition.join = row.querySelector(
+                    ".condition-join input:checked"
+                )?.value;
             }
 
-            // appends the condition to the list for the group in the report data
-            reportData.settings[groupName + "Conditions"].push({
-                metric: metric,
-                operator: operator,
-                threshold: Number(threshold),
-                join: index === 0 ? null : join.value
-            });
+            settings[groupName].push(condition);
         });
     });
 
-    // error checks and alerts
-    if (!fieldsFilled) {
-        alert("Please fill in all fields for each condition.");
-        return;
-    }
-    else if (!budget || !Number.isFinite(Number(budget)) || Number(budget) <= 0) {
-        alert("Enter a valid budget.");
+    // validates settings using the backtest contract
+    const errors = Backtest.validateSettings(settings);
+
+    if (errors.length > 0) {
+        alert(errors.join("\n"));
         return;
     }
 
-    // sends the report data to the report page
-    sessionStorage.setItem("sentReport", JSON.stringify(reportData));
-
-    window.location.href = reportButton.href;
+    // sends the settings to the report page
+    try {
+        sessionStorage.setItem("sentReport", JSON.stringify(settings));
+        window.location.href = reportButton.href;
+    }
+    catch (error) {
+        console.error(error);
+        alert("Unable to save report settings.");
+    }
 });
 
 loadItem();
