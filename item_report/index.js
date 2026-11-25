@@ -4,6 +4,9 @@ const ICON_BASE = "https://oldschool.runescape.wiki/images/";
 const itemIcon = document.getElementById("item-icon");
 const itemName = document.getElementById("item-name");
 const itemReport = document.getElementById("item-report");
+const reportData = JSON.parse(sessionStorage.getItem("sentReport"));
+
+console.log(reportData);
 
 function showError(message) {
     itemName.textContent = message;
